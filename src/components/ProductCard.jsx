@@ -1,8 +1,10 @@
 import React from 'react';
+import { useCart } from '../context/CartContext';
 import '../styles/global.css';
 
 const ProductCard = ({ product }) => {
     const { name, description, price, category, image } = product;
+    const { addToCart } = useCart();
 
     return (
         <div className="product-card" role="article">
@@ -15,7 +17,10 @@ const ProductCard = ({ product }) => {
                 <p className="product-description">{description}</p>
                 <div className="product-footer">
                     <span className="product-price">${price.toFixed(2)}</span>
-                    <button className="add-to-cart-btn" aria-label={`Add ${name} to cart`}>
+                    <button 
+                        className="add-to-cart-btn" 
+                        onClick={() => addToCart(product)}
+                        aria-label={`Add ${name} to cart`}>
                         Add to Cart
                     </button>
                 </div>
